@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/logo.png" href="/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Volta Banca d’Italia</title>
+
+    <!-- Tailwind CDN for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Translate -->
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+          {
+            pageLanguage: 'en', // your site’s default language
+            includedLanguages: 'en,sw,fr,es,de,it,pt',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+          },
+          'google_translate_element'
+        );
+      }
+    </script>
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  </head>
+
+  <body class="bg-gray-50 min-h-screen">
+
+    <!-- Google Translate Button -->
+    <div
+      id="google_translate_element"
+      class="fixed bottom-4 right-4 z-50 bg-white border border-gray-300 rounded-2xl shadow-lg px-3 py-2 flex items-center space-x-2 hover:bg-gray-100 transition cursor-pointer"
+    >
+    </div>
+
+    <!-- React Root -->
+    <div id="root"></div>
+
+    <!-- Your React entry -->
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
