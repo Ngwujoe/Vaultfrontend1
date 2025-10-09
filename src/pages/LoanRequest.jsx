@@ -31,7 +31,7 @@ export default function LoanRequest() {
 
     try {
       const token = localStorage.getItem("token"); // 🔹 Get token
-      const res = await fetch("http://localhost:5000/api/loans/loan-request", {
+      const res = await fetch("https://backend-tmtp.onrender.com/users/api/loans/loan-request", {
         method: "POST",
         headers: { "Content-Type": "application/json",
           Authorization: `Bearer ${token}`, // 🔹 Include token 

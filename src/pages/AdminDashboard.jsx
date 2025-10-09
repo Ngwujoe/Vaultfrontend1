@@ -13,7 +13,7 @@ export default function AdminDashboard() {
     async function fetchUsers() {
       try {
         const token = localStorage.getItem("token");
-        const res = await axios.get("http://localhost:5000/users", {
+        const res = await axios.get("https://backend-tmtp.onrender.com/users", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setUsers(res.data);

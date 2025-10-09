@@ -25,7 +25,7 @@ export default function NewTicket({ user }) {
     setMessage("");
 
     try {
-      const res = await axios.post("http://localhost:5000/tickets", {
+      const res = await axios.post("https://backend-tmtp.onrender.com/tickets", {
         ...formData,
         userId: user?._id, // ✅ attach the logged-in user ID
       });

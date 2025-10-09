@@ -23,7 +23,7 @@ export default function RegisterPage() {
     }
 
     try {
-      const response = await axios.post("http://localhost:5000/users/register", {
+      const response = await axios.post("https://backend-tmtp.onrender.com/users/register", {
         firstName,
         lastName,
         phone,

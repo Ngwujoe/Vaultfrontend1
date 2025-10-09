@@ -27,7 +27,7 @@ export default function ResetPassword() {
     setLoading(true);
     try {
       const res = await axios.post(
-        `http://localhost:5000/users/reset-password/${token}`,
+        `https://backend-tmtp.onrender.com/users/reset-password/${token}`,
         { newPassword: password }
       );
 

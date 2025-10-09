@@ -16,7 +16,7 @@ export default function MyAccountPage() {
         const token = localStorage.getItem("token");
         if (!token) throw new Error("No token found. Please login.");
 
-        const res = await fetch("http://localhost:5000/users/profile", {
+        const res = await fetch("https://backend-tmtp.onrender.com/users/profile", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

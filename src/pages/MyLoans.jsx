@@ -10,7 +10,7 @@ export default function MyLoans() {
   useEffect(() => {
     const fetchLoans = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/loans"); // your backend route
+        const res = await fetch("https://backend-tmtp.onrender.com/users/api/loans"); // your backend route
         const data = await res.json();
         setLoans(data);
       } catch (err) {

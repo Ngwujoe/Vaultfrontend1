@@ -15,7 +15,7 @@ function RecentActivities() {
         const token = localStorage.getItem("token");
         if (!token) return;
 
-        const res = await axios.get("http://localhost:5000/users/profile", {
+        const res = await axios.get("https://backend-tmtp.onrender.com/users/profile", {
           headers: { Authorization: `Bearer ${token}` },
         });
 

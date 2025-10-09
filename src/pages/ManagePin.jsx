@@ -40,7 +40,7 @@ export default function ManagePin() {
 
       const token = localStorage.getItem("token"); // assumes JWT stored
 
-      const res = await fetch("http://localhost:5000/api/auth/change-pin", {
+      const res = await fetch("https://backend-tmtp.onrender.com/users/api/auth/change-pin", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
