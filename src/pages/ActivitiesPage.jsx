@@ -11,7 +11,7 @@ export default function ActivitiesPage({ userId }) {
   useEffect(() => {
     async function fetchActivities() {
       try {
-        const res = await axios.get(`http://localhost:5000/users/${userId}/activities`);
+        const res = await axios.get(`https://backend-tmtp.onrender.com/users/${userId}/activities`);
         setActivities(res.data);
       } catch (err) {
         console.error("Failed to fetch activities:", err);

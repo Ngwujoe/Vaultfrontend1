@@ -11,7 +11,7 @@ export default function HistoryTable() {
         const token = localStorage.getItem("token");
         if (!token) return;
 
-        const res = await axios.get("http://localhost:5000/api/transactions", {
+        const res = await axios.get("https://backend-tmtp.onrender.com/transactions", {
           headers: { Authorization: `Bearer ${token}` },
         });
 

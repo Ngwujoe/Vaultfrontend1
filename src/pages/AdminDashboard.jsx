@@ -30,7 +30,7 @@ export default function AdminDashboard() {
     try {
       const token = localStorage.getItem("token");
       await axios.put(
-        `http://localhost:5000/users/${selectedUser._id}/increase-balance`,
+        `https://backend-tmtp.onrender.com/users/${selectedUser._id}/increase-balance`,
         { amount: parseFloat(amount) },
         { headers: { Authorization: `Bearer ${token}` } }
       );
