@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import API from "../api";
 import Sidebar from "../Components/Sidebar";
 import Topbar from "../Components/Topbar";
 import { Link } from "react-router-dom";
-
 
 // ✅ RecentActivities component
 function RecentActivities() {
@@ -15,10 +14,7 @@ function RecentActivities() {
         const token = localStorage.getItem("token");
         if (!token) return;
 
-        const res = await axios.get("https://backend-tmtp.onrender.com/users/profile", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-
+        const res = await API.get("/users/profile"); // ✅ FIXED: store response
         setActivities(res.data.loginActivities || []);
       } catch (err) {
         console.error("Failed to fetch activities:", err);
@@ -56,16 +52,14 @@ export default function Dashboard() {
   const [inflowOpen, setInflowOpen] = useState(false);
   const [outflowOpen, setOutflowOpen] = useState(false);
 
-  // Fetch user profile
+  // ✅ Fetch user profile
   useEffect(() => {
     async function fetchUser() {
       try {
         const token = localStorage.getItem("token");
         if (!token) return;
 
-        const res = await axios.get("https://backend-tmtp.onrender.com/users/profile", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const res = await API.get("/users/profile"); // ✅ FIXED: store response
         setUser(res.data);
       } catch (err) {
         console.error("Failed to fetch user:", err);
@@ -142,23 +136,31 @@ export default function Dashboard() {
             {/* Loan / Savings */}
             <div className="mt-4 text-sm space-y-1">
               <p>
-                Loan Balance: <span className="text-blue-500">${user.loanBalance?.toFixed(2) || "0.00"}</span>
+                Loan Balance:{" "}
+                <span className="text-blue-500">
+                  ${user.loanBalance?.toFixed(2) || "0.00"}
+                </span>
               </p>
               <p>
-                Savings Balance: <span className="text-blue-500">${user.savingsBalance?.toFixed(2) || "0.00"}</span>
+                Savings Balance:{" "}
+                <span className="text-blue-500">
+                  ${user.savingsBalance?.toFixed(2) || "0.00"}
+                </span>
               </p>
               <p>
-                Current Balance: <span className="text-blue-500">${user.balance.toFixed(2)}</span>
+                Current Balance:{" "}
+                <span className="text-blue-500">
+                  ${user.balance.toFixed(2)}
+                </span>
               </p>
             </div>
 
             <div className="flex justify-between mt-4">
               <button className="px-4 py-2 rounded-md bg-purple-100 text-purple-600 text-sm">
-                <Link to = "/HistoryPage">
-                View Details</Link>
+                <Link to="/HistoryPage">View Details</Link>
               </button>
               <button className="px-4 py-2 rounded-md bg-green-100 text-green-600 text-sm">
-               <Link to ="/MyAccountPage"> Account Details </Link>
+                <Link to="/MyAccountPage">Account Details</Link>
               </button>
             </div>
           </div>
