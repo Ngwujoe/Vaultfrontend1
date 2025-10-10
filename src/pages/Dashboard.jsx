@@ -59,7 +59,7 @@ export default function Dashboard() {
         const token = localStorage.getItem("token");
         if (!token) return;
 
-        const res = await API.get("/users"); // ✅ FIXED: store response
+        const res = await API.get("/users/profile"); // ✅ FIXED: store response
         setUser(res.data);
       } catch (err) {
         console.error("Failed to fetch user:", err);
