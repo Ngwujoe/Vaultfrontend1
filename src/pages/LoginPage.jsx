@@ -47,7 +47,7 @@ export default function LoginPage() {
 
   return (
     <div
-      className="min-h-screen flex items-center justify-center bg-gray-900 bg-cover bg-center"
+      className="h-screen flex items-center justify-center bg-gray-900 bg-cover bg-center"
       style={{
         backgroundImage:
           "url('/Images/Bank.webp')",
