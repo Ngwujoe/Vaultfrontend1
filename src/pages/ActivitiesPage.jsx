@@ -14,7 +14,7 @@ export default function ActivitiesPage({ userId }) {
   useEffect(() => {
     async function fetchActivities() {
       try {
-        const res = await axios.get(`${API_URL}/users/${userId}/activities`);
+        const res = await axios.get(`${API_URL}/users/${userId}`);
         setActivities(res.data);
       } catch (err) {
         console.error("Failed to fetch activities:", err);
