@@ -8,10 +8,13 @@ export default function ActivitiesPage({ userId }) {
   const [activities, setActivities] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // ✅ Use your environment variable here
+  const API_URL = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
     async function fetchActivities() {
       try {
-        const res = await axios.get(`https://backend-tmtp.onrender.com/users/${userId}/activities`);
+        const res = await axios.get(`${API_URL}/users/${userId}/activities`);
         setActivities(res.data);
       } catch (err) {
         console.error("Failed to fetch activities:", err);
@@ -21,19 +24,15 @@ export default function ActivitiesPage({ userId }) {
     }
 
     fetchActivities();
-  }, [userId]);
+  }, [userId, API_URL]);
 
   return (
     <div className="flex h-screen bg-gray-100">
-      {/* Sidebar */}
       <Sidebar />
 
-      {/* Main content */}
       <div className="flex-1 flex flex-col">
-        {/* Topbar */}
         <Topbar />
 
-        {/* Page content */}
         <div className="p-6 overflow-y-auto">
           <h2 className="text-2xl font-bold mb-4">Recent Activities</h2>
 
