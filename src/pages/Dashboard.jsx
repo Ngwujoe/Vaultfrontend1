@@ -1,84 +1,25 @@
-import { useState, useEffect } from "react";
-import API from "../api";
+import { useState } from "react";
 import Sidebar from "../Components/Sidebar";
 import Topbar from "../Components/Topbar";
 import { Link } from "react-router-dom";
-
-// ✅ RecentActivities component
-function RecentActivities() {
-  const [activities, setActivities] = useState([]);
-
-  useEffect(() => {
-    async function fetchActivities() {
-      try {
-        const token = localStorage.getItem("token");
-        if (!token) return;
-
-        const res = await API.get("/users/Dasboard"); // ✅ FIXED: store response
-        setActivities(res.data.loginActivities || []);
-      } catch (err) {
-        console.error("Failed to fetch activities:", err);
-      }
-    }
-
-    fetchActivities();
-    const interval = setInterval(fetchActivities, 10000); // refresh every 10s
-    return () => clearInterval(interval);
-  }, []);
-
-  return (
-    <div className="bg-white rounded-lg p-6 shadow">
-      <h3 className="font-bold mb-2">Recent Activities</h3>
-      <ul className="text-sm text-gray-600">
-        {activities.length === 0 && (
-          <li className="text-gray-400">No recent activities.</li>
-        )}
-        {activities.map((act, idx) => (
-          <li key={idx} className="flex justify-between">
-            <span>{act.action}</span>
-            <span className="text-red-500">
-              {new Date(act.timestamp).toLocaleString()}
-            </span>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
+import useUserProfile from "../hooks/useUserProfile"; // ✅ Import the hook
+import RecentActivities from "../Components/RecentActivities"; // Move to its own file if not yet
 
 export default function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [user, setUser] = useState(null);
   const [inflowOpen, setInflowOpen] = useState(false);
   const [outflowOpen, setOutflowOpen] = useState(false);
 
-  // ✅ Fetch user profile
-  useEffect(() => {
-    async function fetchUser() {
-      try {
-        const token = localStorage.getItem("token");
-        if (!token) return;
+  const { user, loading, error } = useUserProfile(); // ✅ use the hook
 
-        const res = await API.get("/users/profile"); // ✅ FIXED: store response
-        setUser(res.data);
-      } catch (err) {
-        console.error("Failed to fetch user:", err);
-      }
-    }
-
-    fetchUser();
-    const interval = setInterval(fetchUser, 10000); // refresh every 10s
-    return () => clearInterval(interval);
-  }, []);
-
-  if (!user) return <p className="text-center mt-20">Loading...</p>;
+  if (loading) return <p className="text-center mt-20">Loading...</p>;
+  if (error) return <p className="text-center text-red-500 mt-20">Error loading user data.</p>;
+  if (!user) return <p className="text-center mt-20">No user data available.</p>;
 
   return (
     <div className="flex h-screen bg-gray-100">
-      {/* Sidebar */}
       <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
-      {/* Main Content */}
       <main className="flex-1 flex flex-col">
         <Topbar
           title="Dashboard / Overview"
@@ -96,7 +37,9 @@ export default function Dashboard() {
                   alt="profile"
                   className="rounded-full"
                 />
-                <span className="text-sm">{user.firstName} {user.lastName}</span>
+                <span className="text-sm">
+                  {user.firstName} {user.lastName}
+                </span>
               </span>
               <button className="text-white text-lg">+</button>
             </div>
@@ -104,8 +47,8 @@ export default function Dashboard() {
             <h2 className="text-lg font-semibold">Current Balance</h2>
             <p className="text-3xl font-bold my-2">${user.balance.toFixed(2)}</p>
 
-            {/* Inflow / Outflow */}
             <div className="flex gap-4 mt-4">
+              {/* Inflow */}
               <div
                 className="bg-white text-black px-4 py-2 rounded-lg flex-1 cursor-pointer"
                 onClick={() => setInflowOpen(!inflowOpen)}
@@ -119,6 +62,7 @@ export default function Dashboard() {
                 </p>
               </div>
 
+              {/* Outflow */}
               <div
                 className="bg-white text-black px-4 py-2 rounded-lg flex-1 cursor-pointer"
                 onClick={() => setOutflowOpen(!outflowOpen)}
@@ -165,7 +109,6 @@ export default function Dashboard() {
             </div>
           </div>
 
-          {/* Recent Activities */}
           <RecentActivities />
         </section>
       </main>
