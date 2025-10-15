@@ -15,7 +15,7 @@ setMessage("");
 
 try {
   const res = await axios.post(
-    "https://voltabancaditalia.com/users/forgot-password",
+    "https://backend-tmtp.onrender.com/users/forgot-password",
     { email }
   );
   setMessage(res.data.message);
