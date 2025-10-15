@@ -10,7 +10,7 @@ export default function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [inflowOpen, setInflowOpen] = useState(false);
   const [outflowOpen, setOutflowOpen] = useState(false);
-  const walletAddress = "0x1234abcd5678ef90..."; 
+  const walletAddress = "bc1qykngr2dt3kxkwhxuq523nf90tk4mcrssz8td4d"; 
 
   const { user, loading, error } = useUserProfile(); // ✅ use the hook
 

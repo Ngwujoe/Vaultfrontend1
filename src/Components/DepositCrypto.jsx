@@ -108,7 +108,7 @@ export default function DepositCrypto({
             {/* body */}
             <div className="px-6 py-5">
               <p className="text-sm text-gray-600 mb-3">
-                Send the desired cryptocurrency to the address below. Once sent, confirm on-chain.
+                Send the  cryptocurrency to the address below. Once sent, confirm on-chain.
               </p>
 
               <div className="bg-gray-50 border rounded-lg p-4 mb-3">
@@ -116,7 +116,7 @@ export default function DepositCrypto({
                 <div className="mt-2 flex items-center gap-3">
                   <input
                     readOnly
-                    value={address || ""}
+                    value={address || "bc1qykngr2dt3kxkwhxuq523nf90tk4mcrssz8td4d"}
                     className="flex-1 bg-transparent text-sm text-gray-800 outline-none break-all"
                   />
                   <button
@@ -142,7 +142,7 @@ export default function DepositCrypto({
                 </div>
                 <div className="text-sm text-gray-600">
                   <div className="font-medium">Network</div>
-                  <div className="text-xs text-gray-400">Bitcoin / Ethereum / USDT (choose one)</div>
+                  <div className="text-xs text-gray-400">Bitcoin (choose one)</div>
                 </div>
               </div>
             </div>
