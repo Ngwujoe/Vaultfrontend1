@@ -51,7 +51,7 @@ export default function ManagePassword() {
       const token = localStorage.getItem("token"); // JWT token
 
       const res = await fetch(
-        "https://voltabancaditalia.com/users/reset-password/${token}",
+        "https://backend-tmtp.onrender.com/users/reset-password/${token}",
         {
           method: "POST",
           headers: {
