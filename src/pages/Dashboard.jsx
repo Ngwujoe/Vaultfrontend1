@@ -2,13 +2,15 @@ import { useState } from "react";
 import Sidebar from "../Components/Sidebar";
 import Topbar from "../Components/Topbar";
 import { Link } from "react-router-dom";
-import useUserProfile from "../hooks/useUserProfile"; // ✅ Import the hook
-import RecentActivities from "../Components/RecentActivities"; // Move to its own file if not yet
+import useUserProfile from "../hooks/useUserProfile";
+import RecentActivities from "../Components/RecentActivities"; 
+import DepositCrypto from "../Components/DepositCrypto";
 
 export default function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [inflowOpen, setInflowOpen] = useState(false);
   const [outflowOpen, setOutflowOpen] = useState(false);
+  const walletAddress = "0x1234abcd5678ef90..."; 
 
   const { user, loading, error } = useUserProfile(); // ✅ use the hook
 
@@ -110,7 +112,18 @@ export default function Dashboard() {
           </div>
 
           <RecentActivities />
-        </section>
+
+
+        <div>
+          {/* ... other UI */}
+         <DepositCrypto
+        address={walletAddress}
+        siteName="VoltaBanca"
+        label="Deposit Crypto"
+         />
+        </div>
+
+      </section>
       </main>
     </div>
   );
